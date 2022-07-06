@@ -4,6 +4,7 @@ go 1.18
 
 require (
 	github.com/dariubs/percent v1.0.0
+	github.com/go-playground/assert/v2 v2.0.1
 	github.com/jaypipes/ghw v0.9.0
 	github.com/shirou/gopsutil/v3 v3.22.6
 )
