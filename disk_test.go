@@ -15,6 +15,10 @@ func TestSystem_staticDisk(t *testing.T) {
 func TestSystem_liveDisk(t *testing.T) {
 	var s System
 	emptyLive := LiveInformation{}
-	s.liveDisk()
-	assert.NotEqual(t, s.Live.Disk, emptyLive.Disk)
+	err := s.liveDisk()
+	if err != nil {
+		assert.Equal(t, s.Live.Disk, emptyLive.Disk)
+	} else {
+		assert.NotEqual(t, s.Live.Disk, emptyLive.Disk)
+	}
 }

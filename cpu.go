@@ -1,6 +1,7 @@
 package system
 
 import (
+	"fmt"
 	"github.com/shirou/gopsutil/v3/cpu"
 	"math"
 	"runtime"
@@ -30,11 +31,12 @@ func staticCpu() CPU {
 	return p
 }
 
-func (s *System) liveCpu() {
+func (s *System) liveCpu() error {
 	p, err := cpu.Percent(0, false)
 	if err != nil {
-		return
+		return fmt.Errorf("cannot update live cpu")
 	}
 	s.Live.CPU.Value = s.Static.CPU.Name
 	s.Live.CPU.Percentage = append(s.Live.CPU.Percentage[1:], math.RoundToEven(p[0]))
+	return nil
 }

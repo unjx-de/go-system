@@ -31,9 +31,9 @@ type System struct {
 
 func (s *System) UpdateLiveInformation() {
 	for {
-		s.liveCpu()
-		s.liveRam()
-		s.liveDisk()
+		_ = s.liveCpu()
+		_ = s.liveRam()
+		_ = s.liveDisk()
 		s.uptime()
 		LiveInformationCh <- s.Live
 		time.Sleep(1 * time.Second)

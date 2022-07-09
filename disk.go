@@ -21,10 +21,10 @@ func staticDisk() Storage {
 	return s
 }
 
-func (s *System) liveDisk() {
+func (s *System) liveDisk() error {
 	d, err := disk.Usage("/")
 	if err != nil {
-		return
+		return fmt.Errorf("cannot update live disk")
 	}
 	usage := d.Used
 	if usage > 0 {
@@ -32,5 +32,5 @@ func (s *System) liveDisk() {
 		s.Live.Disk.Value = fmt.Sprintf("%.2f", niceUsage)
 		s.Live.Disk.Percentage = math.RoundToEven(percent.PercentOfFloat(niceUsage, s.Static.Disk.Value))
 	}
-	return
+	return nil
 }

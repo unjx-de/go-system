@@ -17,6 +17,10 @@ func TestSystem_liveCPU(t *testing.T) {
 	emptyLive := LiveInformation{}
 	emptyLive.CPU.Percentage = make([]float64, 60)
 	s.Live.CPU.Percentage = make([]float64, 60)
-	s.liveCpu()
-	assert.NotEqual(t, s.Live.CPU, emptyLive.CPU)
+	err := s.liveCpu()
+	if err != nil {
+		assert.Equal(t, s.Live.CPU, emptyLive.CPU)
+	} else {
+		assert.NotEqual(t, s.Live.CPU, emptyLive.CPU)
+	}
 }

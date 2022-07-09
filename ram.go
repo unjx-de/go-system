@@ -21,10 +21,10 @@ func staticRam() Storage {
 	return s
 }
 
-func (s *System) liveRam() {
+func (s *System) liveRam() error {
 	r, err := mem.VirtualMemory()
 	if err != nil {
-		return
+		return fmt.Errorf("cannot update live ram")
 	}
 	var niceUsage float64 = 0
 	used := r.Used
@@ -33,4 +33,5 @@ func (s *System) liveRam() {
 		s.Live.Ram.Value = fmt.Sprintf("%.2f", niceUsage)
 		s.Live.Ram.Percentage = math.RoundToEven(percent.PercentOfFloat(niceUsage, s.Static.Ram.Value))
 	}
+	return nil
 }

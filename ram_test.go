@@ -15,6 +15,10 @@ func TestSystem_staticRam(t *testing.T) {
 func TestSystem_liveRam(t *testing.T) {
 	var s System
 	emptyLive := LiveInformation{}
-	s.liveRam()
-	assert.NotEqual(t, s.Live.Ram, emptyLive.Ram)
+	err := s.liveRam()
+	if err != nil {
+		assert.Equal(t, s.Live.Ram, emptyLive.Ram)
+	} else {
+		assert.NotEqual(t, s.Live.Ram, emptyLive.Ram)
+	}
 }
