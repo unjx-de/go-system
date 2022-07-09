@@ -29,8 +29,8 @@ func (s *System) liveRam() {
 	var niceUsage float64 = 0
 	used := r.Used
 	if used > 0 {
-		niceUsage = float64(used) / s.Static.Memory.Unit
-		s.Live.RAM.Value = fmt.Sprintf("%.2f", niceUsage)
-		s.Live.RAM.Percentage = math.RoundToEven(percent.PercentOfFloat(niceUsage, s.Static.Memory.Value))
+		niceUsage = float64(used) / s.Static.Ram.Unit
+		s.Live.Ram.Value = fmt.Sprintf("%.2f", niceUsage)
+		s.Live.Ram.Percentage = math.RoundToEven(percent.PercentOfFloat(niceUsage, s.Static.Ram.Value))
 	}
 }

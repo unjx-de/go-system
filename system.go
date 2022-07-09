@@ -13,15 +13,15 @@ type BasicSystemInformation struct {
 
 type LiveInformation struct {
 	CPU          CpuSystemInformation   `json:"cpu" validate:"required"`
-	RAM          BasicSystemInformation `json:"ram" validate:"required"`
+	Ram          BasicSystemInformation `json:"ram" validate:"required"`
 	Disk         BasicSystemInformation `json:"disk" validate:"required"`
 	ServerUptime uint64                 `json:"server_uptime" validate:"required"`
 }
 
 type StaticInformation struct {
-	CPU    CPU     `json:"cpu" validate:"required"`
-	Memory Storage `json:"ram" validate:"required"`
-	Disk   Storage `json:"disk" validate:"required"`
+	CPU  CPU     `json:"cpu" validate:"required"`
+	Ram  Storage `json:"ram" validate:"required"`
+	Disk Storage `json:"disk" validate:"required"`
 }
 
 type System struct {
@@ -42,7 +42,7 @@ func (s *System) UpdateLiveInformation() {
 
 func (s *System) Initialize() {
 	s.Static.CPU = staticCpu()
-	s.Static.Memory = staticRam()
+	s.Static.Ram = staticRam()
 	s.Static.Disk = staticDisk()
 	s.Live.CPU.Percentage = make([]float64, 60)
 	LiveInformationCh = make(chan LiveInformation)
